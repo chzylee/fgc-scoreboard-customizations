@@ -26,7 +26,7 @@ body {
     font-size: 30px;
     opacity: 0; }
     body .wrappers .teams {
-      color: #e5e5e5; }
+      color: #e285cf; }
   body #p1Wrapper {
     left: 456px; }
   body #p2Wrapper {
@@ -66,7 +66,7 @@ body {
     display: none; }
   body #roundBG {
     background-color: rgba(0, 0, 0, 0.75);
-    outline: 1px solid #c40a18;
+    outline: 1px solid #2b3a76;
     width: 240px;
     height: 36px;
     position: absolute;
@@ -88,13 +88,13 @@ body {
     left: 1105px; }
   body .playerBG {
     background-color: rgba(0, 0, 0, 0.75);
-    outline: 1px solid #c40a18;
+    outline: 1px solid #3f6cbd;
     width: 375px;
     height: 100%;
     position: absolute;
     filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.6)); }
   body .scoreBG {
-    background-color: #c40a18;
+    background-color: #3f6cbd;
     outline: 1px solid black;
     width: 49px;
     height: calc(100% - 4px);
