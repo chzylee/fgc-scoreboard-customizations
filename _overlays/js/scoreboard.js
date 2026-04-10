@@ -106,6 +106,30 @@ function init(){
 
 	setTimeout(scoreboard,300);
 
+	function applyCustomizations() {
+		var mainColor = scObj['mainColor'];
+		var teamColor = scObj['teamColor'];
+		var toggleLogo = scObj['toggleLogo'];
+
+		// Colors: set CSS custom properties on :root; removing them falls back to stylesheet defaults
+		if (mainColor) {
+			document.documentElement.style.setProperty('--accent-color', mainColor);
+		} else {
+			document.documentElement.style.removeProperty('--accent-color');
+		}
+		if (teamColor) {
+			document.documentElement.style.setProperty('--team-color', teamColor);
+		} else {
+			document.documentElement.style.removeProperty('--team-color');
+		}
+
+		if (toggleLogo === 'Show') {
+			$('#logoWrapper').show();
+		} else if (toggleLogo === 'Hide') {
+			$('#logoWrapper').hide();
+		}
+	}
+
 	function getData(){
 
 		var p1Name = scObj['p1Name']; //creates local variables to store data parsed from json
@@ -292,6 +316,8 @@ function init(){
 				}});
 			}
 		}
+
+		applyCustomizations();
 	}
 
 	function playCSSAnimations(){
