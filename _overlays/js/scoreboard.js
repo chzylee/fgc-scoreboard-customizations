@@ -49,7 +49,7 @@ function init(){
 				TweenMax.set('#leftWrapper',{css:{y: '4px'}});
 				TweenMax.set('#rightWrapper',{css:{y: '4px'}});
 			}
-			else if(game == 'BBCF' || game == 'DBFZ' || game == 'GGXRD' || game == 'KOFXIV' || game == 'MVCI' || game == 'UMVC3'){
+			else if(game == 'BBCF' || game == 'DBFZ' || game == 'GGXRD' || game == 'KOFXIV' || game == 'MVCI' || game == 'UMVC3' || game == 'MBAACC'){
 				// Shifts the scoreboard text wrappers up to match HP bars
 				TweenMax.set('#leftWrapper',{css:{y: adjust2}});
 				TweenMax.set('#rightWrapper',{css:{y: adjust2}});
@@ -70,6 +70,29 @@ function init(){
 				var adjustLgH = parseFloat($('.logos').css('height')) * adjustLg[2];
 				TweenMax.set('.logos',{css:{x: adjustLg[0], y: adjustLg[1], width: adjustLgW, height: adjustLgH}});
 			}
+			if(game == 'GBVSR'){
+				// Shifts scorepoard BG and text wrapper out to avoid covering BP
+				var leftOffset = document.getElementById("leftBGWrapper").offsetLeft;
+				var righttOffset = document.getElementById("rightBGWrapper").offsetLeft;
+				TweenMax.fromTo('#leftBGWrapper', 0.5, {css:{left: leftOffset}}, {css:{left: gbvsrLeftBgLeft}})
+				TweenMax.fromTo('#rightBGWrapper', 0.5, {css:{left: righttOffset}}, {css:{left: gbvsrRightBgLeft}})
+				TweenMax.set('#leftWrapper',{css:{left: gbvsrLeftBgLeft}});
+				TweenMax.set('#rightWrapper',{css:{left: gbvsrRightBgLeft}});
+				TweenMax.set('#p1Score',{css:{left: gbvsrP1ScoreLeft}});
+				TweenMax.set('#p2Score',{css:{left: gbvsrP2ScoreLeft}});
+				TweenMax.set('#p1Wrapper',{css:{left: gbvsrP1WrapperLeft}});
+				TweenMax.set('#p2Wrapper',{css:{left: gbvsrP2WrapperLeft}});
+			}
+			else{
+				// Shifts scorepoard BG and text wrapper back to normal horizontal position
+				TweenMax.set('#leftWrapper',{css:{left: standardLeftBgLeft}});
+				TweenMax.set('#rightWrapper',{css:{left: standardRightBgLeft}});
+				TweenMax.set('#p1Score',{css:{left: standardP1ScoreLeft}});
+				TweenMax.set('#p2Score',{css:{left: standardP2ScoreLeft}});
+				TweenMax.set('#p1Wrapper',{css:{left: standardP1WrapperLeft}});
+				TweenMax.set('#p2Wrapper',{css:{left: standardP2WrapperLeft}});
+			}
+
 
 			getData(); //runs function that sets data polled from json into html objects
 			setTimeout(logoLoop,logoTime); //sets logoLoop function out in time specified in logoTime variable in scoreboard.html
@@ -82,6 +105,30 @@ function init(){
 	}
 
 	setTimeout(scoreboard,300);
+
+	function applyCustomizations() {
+		var mainColor = scObj['mainColor'];
+		var teamColor = scObj['teamColor'];
+		var toggleLogo = scObj['toggleLogo'];
+
+		// Colors: set CSS custom properties on :root; removing them falls back to stylesheet defaults
+		if (mainColor) {
+			document.documentElement.style.setProperty('--accent-color', mainColor);
+		} else {
+			document.documentElement.style.removeProperty('--accent-color');
+		}
+		if (teamColor) {
+			document.documentElement.style.setProperty('--team-color', teamColor);
+		} else {
+			document.documentElement.style.removeProperty('--team-color');
+		}
+
+		if (toggleLogo === 'Show') {
+			$('#logoWrapper').show();
+		} else if (toggleLogo === 'Hide') {
+			$('#logoWrapper').hide();
+		}
+	}
 
 	function getData(){
 
@@ -238,6 +285,28 @@ function init(){
 					else{
 						TweenMax.set('.logos',{css:{x: '+0px', y: '+0px', width: adjustLg[3], height: adjustLg[4]}}); //also return logos to original positioning and size
 					}
+					if(game == 'GBVSR'){
+						// Shifts scorepoard BG and text wrapper out to avoid covering BP
+						var leftOffset = document.getElementById("leftBGWrapper").offsetLeft;
+						var righttOffset = document.getElementById("rightBGWrapper").offsetLeft;
+						TweenMax.fromTo('#leftBGWrapper', 0.5, {css:{left: leftOffset}}, {css:{left: gbvsrLeftBgLeft}})
+						TweenMax.fromTo('#rightBGWrapper', 0.5, {css:{left: righttOffset}}, {css:{left: gbvsrRightBgLeft}})
+						TweenMax.set('#leftBGWrapper',{css:{left: gbvsrLeftBgLeft}});
+						TweenMax.set('#rightBGWrapper',{css:{left: gbvsrRightBgLeft}});
+						TweenMax.set('#p1Score',{css:{left: gbvsrP1ScoreLeft}});
+						TweenMax.set('#p2Score',{css:{left: gbvsrP2ScoreLeft}});
+						TweenMax.set('#p1Wrapper',{css:{left: gbvsrP1WrapperLeft}});
+						TweenMax.set('#p2Wrapper',{css:{left: gbvsrP2WrapperLeft}});
+					}
+					else{
+						// Shifts scorepoard BG and text wrapper back to normal horizontal position
+						TweenMax.set('#leftBGWrapper',{css:{left: standardLeftBgLeft}});
+						TweenMax.set('#rightBGWrapper',{css:{left: standardRightBgLeft}});
+						TweenMax.set('#p1Score',{css:{left: standardP1ScoreLeft}});
+						TweenMax.set('#p2Score',{css:{left: standardP2ScoreLeft}});
+						TweenMax.set('#p1Wrapper',{css:{left: standardP1WrapperLeft}});
+						TweenMax.set('#p2Wrapper',{css:{left: standardP2WrapperLeft}});
+					}
 
 					playCSSAnimations();
 
@@ -247,6 +316,8 @@ function init(){
 				}});
 			}
 		}
+
+		applyCustomizations();
 	}
 
 	function playCSSAnimations(){
