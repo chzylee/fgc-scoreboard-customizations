@@ -4,9 +4,14 @@
 }
 
 $main-color: rgba(0, 0, 0, 0.75);
-$accent-color: #c40a18;
+$accent-color: #3f6cbd;
 $font-color: white;
-$team-color: #e5e5e5;
+$team-color: #e285cf;
+
+:root {
+  --accent-color: #{$accent-color};
+  --team-color: #{$team-color};
+}
 
 body {
   width: 1920px;
@@ -37,7 +42,7 @@ body {
     opacity: 0;
 
     .teams {
-      color: $team-color;
+      color: var(--team-color);
     }
   }
 
@@ -96,7 +101,7 @@ body {
 
   #roundBG {
     background-color: $main-color;
-    outline: 1px solid $accent-color;
+    outline: 1px solid var(--accent-color);
     width: 240px;
     height: 36px;
     position: absolute;
@@ -128,7 +133,7 @@ body {
 
   .playerBG {
     background-color: $main-color;
-    outline: 1px solid $accent-color;
+    outline: 1px solid var(--accent-color);
     width: 375px;
     height: 100%;
     position: absolute;
@@ -136,7 +141,7 @@ body {
   }
 
   .scoreBG {
-    background-color: $accent-color;
+    background-color: var(--accent-color);
     outline: 1px solid black;
     width: 49px;
     height: calc(100% - 4px);
