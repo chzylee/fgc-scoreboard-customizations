@@ -1,6 +1,8 @@
 # FGC Scoreboard
 FGC Scoreboard is an html and css scoreboard for fighting game tournament streams. It uses absolutely no images (except for tournament/company logos which I've included a generic PSD for) and absolutely no webm files for animations.
 
+The original [fgc-scoreboard](https://github.com/WASD-Gaming/fgc-scoreboard) was created by Tarik of WASD Gaming, and this package includes minor customization additions by enpicie.
+
 ## How FGC Scoreboard Works
 To get started with FGC Scoreboard just open your streaming platform of choice, add a **broswer source**, and then navigate to wherever you saved the **scoreboard.html** file.
 
@@ -29,7 +31,15 @@ Finally, when you select a game (and hit save) the layout will adjust so that th
 * UMVC3
 * UNICLR
 * USF4
+* MBAACC
+* GBVSR
 ```
+
+#### Customization Updates
+In StreamControl, there is a Customizations tab where you can reconfigure the following:
+- Main color for the scoreboard
+- Color for team tag text
+- Show or hide logo image at the bottom (default logo shows Reddit Tour image)
 
 ## Drop Me a Line
 If you found this at all useful, or have some suggestions, please let me know! You can drop me a line on twitter ([@tarikfayad](https://twitter.com/tarikfayad)), find me on Twitch ([ImpurestClub](https://www.twitch.tv/impurestclub/)), or ping me on my Discord server ([Link](https://discord.gg/ykj8tsN)).
