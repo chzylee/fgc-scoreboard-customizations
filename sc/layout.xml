@@ -16,9 +16,9 @@
   <label x="390" y="44" width="50" height="13">Pronouns</label>
   <lineEdit id="p2Pronouns" x="445" y="40" width="130" height="20" dataSet="players.csv" dataField="3" master="p2Name" />
   <lineEdit id="round" x="60" y="70" width="160" height="20" dataSet="round.csv" dataField="1"  />
-  <button type="swap" x="230" y="70" width="60" height="23" tooltip="Swap the Scores" id="swap1" swapSet1="p1Name,p1Team,p1Score" swapSet2="p2Name,p2Team,p2Score">Swap</button>
+  <button type="swap" x="230" y="70" width="60" height="23" tooltip="Swap the Scores" id="swap1" swapSet1="p1Name,p1Team,p1Score,p1Pronouns" swapSet2="p2Name,p2Team,p2Score,p2Pronouns">Swap</button>
   <button type="reset" x="300" y="70" width="60" height="23" tooltip="Reset the Scores" id="reset1" reset="p1Score,p2Score">Reset</button>
-  <button type="reset" x="370" y="70" width="60" height="23" tooltip="Clear Match Info" id="reset2" reset="p1Name,p1Team,p1Score,p2Name,p2Team,p2Score">Clear</button>
+  <button type="reset" x="370" y="70" width="60" height="23" tooltip="Clear Match Info" id="reset2" reset="p1Name,p1Team,p1Score,p1Pronouns,p2Name,p2Team,p2Score,p2Pronouns">Clear</button>
   <comboBox id="game" editable="1" x="60" y="100" width="100" height="20">
    <comboItem>BBCF</comboItem>
    <comboItem>BBTAG</comboItem>
