@@ -7,6 +7,7 @@ function init(){
 	var scObj; //variable to hold data extracted from parsed json
 	var startup = true; //flag for if looping functions are on their first pass or not
 	var animated = false; //flag for if scoreboard animation has run or not
+	var scoresHidden = false; //flag for current shown/hidden state of the score numbers, driven by 'hideScores' checkbox
 	var cBust = 0; //variable to hold cache busting value
 	var game; //variable to hold game value from streamcontrol dropdown
 	var p1Wrap = $('#p1Wrapper'); //variables to shortcut copypasting text resize functions
@@ -110,6 +111,15 @@ function init(){
 		var mainColor = scObj['mainColor'];
 		var teamColor = scObj['teamColor'];
 		var toggleLogo = scObj['toggleLogo'];
+		var hideScores = scObj['hideScores'];
+
+		// Fade the score numbers out/in based on the 'Hide Scores' checkbox so only names show.
+		// Only animate when the desired state actually changes to avoid restarting the tween each poll.
+		var shouldHide = (hideScores === '1' || hideScores === 'true');
+		if (shouldHide !== scoresHidden) {
+			scoresHidden = shouldHide;
+			TweenMax.to('.scores',.3,{css:{opacity: shouldHide ? 0 : 1},ease:Quad.easeOut});
+		}
 
 		// Colors: set CSS custom properties on :root; removing them falls back to stylesheet defaults
 		if (mainColor) {
@@ -178,7 +188,8 @@ function init(){
 			TweenMax.to('#p1Wrapper',nameTime,{css:{x: '+0px', opacity: 1},ease:Quad.easeOut,delay:nameDelay}); //animates wrappers traveling back to default css positions while
 			TweenMax.to('#p2Wrapper',nameTime,{css:{x: '+0px', opacity: 1},ease:Quad.easeOut,delay:nameDelay}); //fading them in, timing/delay based on variables set in scoreboard.html
 			TweenMax.to('#round',rdTime,{css:{y: '+0px', opacity: 1},ease:Quad.easeOut,delay:rdDelay});
-			TweenMax.to('.scores',scTime,{css:{opacity: 1},ease:Quad.easeOut,delay:scDelay});
+			scoresHidden = (scObj['hideScores'] === '1' || scObj['hideScores'] === 'true'); //respect hidden state on first load so applyCustomizations doesn't re-animate
+			TweenMax.to('.scores',scTime,{css:{opacity: scoresHidden ? 0 : 1},ease:Quad.easeOut,delay:scDelay});
 		}
 		else{
 			game = scObj['game']; //if this is after the first time that getData function has run, changes the value of the local game variable to current json output
@@ -237,7 +248,7 @@ function init(){
 				TweenMax.to('#p1Score',.3,{css:{opacity: 0},ease:Quad.easeOut,delay:0,onComplete:function(){
 					$('#p1Score').html(p1Score);
 
-					TweenMax.to('#p1Score',.3,{css:{opacity: 1},ease:Quad.easeOut,delay:.2});
+					TweenMax.to('#p1Score',.3,{css:{opacity: scoresHidden ? 0 : 1},ease:Quad.easeOut,delay:.2}); //stay hidden if scores are toggled off
 				}});
 			}
 
@@ -245,7 +256,7 @@ function init(){
 				TweenMax.to('#p2Score',.3,{css:{opacity: 0},ease:Quad.easeOut,delay:0,onComplete:function(){
 					$('#p2Score').html(p2Score);
 
-					TweenMax.to('#p2Score',.3,{css:{opacity: 1},ease:Quad.easeOut,delay:.2});
+					TweenMax.to('#p2Score',.3,{css:{opacity: scoresHidden ? 0 : 1},ease:Quad.easeOut,delay:.2}); //stay hidden if scores are toggled off
 				}});
 			}
 

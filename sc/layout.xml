@@ -57,12 +57,14 @@
   <label x="10" y="14" width="95" height="13">Main Color</label>
   <label x="10" y="44" width="95" height="13">Team Text Color</label>
   <label x="10" y="74" width="95" height="13">Toggle Logo</label>
+  <label x="10" y="104" width="95" height="13">Hide Scores</label>
   <lineEdit id="mainColor" x="110" y="10" width="100" height="20" />
   <lineEdit id="teamColor" x="110" y="40" width="100" height="20" />
   <comboBox id="toggleLogo" x="110" y="70" width="80" height="20">
    <comboItem>Hide</comboItem>
    <comboItem>Show</comboItem>
   </comboBox>
-  <label x="10" y="106" width="380" height="13">Colors: hex e.g. #3f6cbd — leave blank to use stylesheet default</label>
+  <checkBox id="hideScores" x="110" y="101" width="20" height="20"></checkBox>
+  <label x="10" y="136" width="380" height="13">Colors: hex e.g. #3f6cbd — leave blank to use stylesheet default</label>
  </tab>
 </layout>
