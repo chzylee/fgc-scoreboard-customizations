@@ -7,10 +7,12 @@ $main-color: rgba(0, 0, 0, 0.75);
 $accent-color: #3f6cbd;
 $font-color: white;
 $team-color: #e285cf;
+$scoreboard-font: "Valorant"; // default font; override locally via style.local.css (gitignored), not here
 
 :root {
   --accent-color: #{$accent-color};
   --team-color: #{$team-color};
+  --scoreboard-font: #{$scoreboard-font};
 }
 
 body {
@@ -23,7 +25,7 @@ body {
   text-transform: uppercase;
   color: $font-color;
   text-shadow: 2px 2px 3px DimGray;
-  font-family: "Valorant";
+  font-family: var(--scoreboard-font);
 
   .scoreboard {
     position: absolute;
@@ -83,6 +85,29 @@ body {
     text-align: center;
     font-size: 22px;
     opacity: 0;
+  }
+
+  // Pronouns are a standalone fragment element (scoreboard-pronouns.html); not used by the full board.
+  // Kept symmetric around center: p1Left + p2Left = 1920 - width (1620 here). Visual centers land at 690 / 1230.
+  // Push Pronouns Out then nudges both outward from this default.
+  .pronouns {
+    position: absolute;
+    width: 300px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    top: 78px;
+    font-size: 18px;
+    text-transform: none; // pronouns read better lowercase; body otherwise uppercases everything
+    opacity: 0;
+  }
+
+  #p1Pronouns {
+    left: 540px;
+  }
+
+  #p2Pronouns {
+    left: 1080px;
   }
 
   .logos {

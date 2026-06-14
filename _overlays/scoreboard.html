@@ -1,6 +1,16 @@
+<!--
+	Full SCOREBOARD overlay (background shapes + names + scores + round + logos), driven by StreamControl.
+
+	OBS Browser Source size: Width 1920, Height 1080.
+	This page draws onto a transparent 1920x1080 canvas, so the source MUST be 1920x1080.
+	For placing individual pieces over a custom overlay image instead, use the standalone
+	pages: scoreboard-names.html, scoreboard-scores.html, scoreboard-round.html,
+	scoreboard-pronouns.html (each is also a 1920x1080 browser source).
+-->
 <html>
 	<head>
 		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/style.local.css"> <!-- optional, gitignored: your own font/overrides; safe to be absent -->
 		<script src="js/scoreboard.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/greensock-js/src/minified/TweenMax.min.js" type="text/javascript" charset="utf-8"></script>
@@ -34,15 +44,15 @@
 				</span>
 			</div>
 			<div id="rdWrapper">
-				<span id="round"></span>
+				<span id="round"></span>wh
 			</div>
 		</div>
 
 
 		<div id="logoWrapper">
-			<img id="logo1" class="logos" src="imgs/reddit-tour.png"></img>
-			<!-- <img id="logo2" class="logos" src="imgs/logo2.png"></img>
-			<img id="logo3" class="logos" src="imgs/logo3.png"></img> -->
+			<img id="logo1" class="logos" src="imgs/pride-logo.png"></img>
+			<img id="logo2" class="logos" src="imgs/midweek-nanaya.png"></img>
+			<!-- <img id="logo3" class="logos" src="imgs/logo3.png"></img> -->
 		</div>
 
 
@@ -79,6 +89,8 @@
 			var gbvsrP2ScoreLeft = '1580px';
 			var gbvsrP1WrapperLeft = '361px';
 			var gbvsrP2WrapperLeft = '1211px';
+
+			var offsetStep = 10; //pixels shifted outward per increment of the 'Push Names/Scores Out' dropdowns (0-10) in StreamControl
 		</script>
 	</body>
 

@@ -7,7 +7,7 @@ function init(){
 	var scObj; //variable to hold data extracted from parsed json
 	var startup = true; //flag for if looping functions are on their first pass or not
 	var animated = false; //flag for if scoreboard animation has run or not
-	var scoresHidden = false; //flag for current shown/hidden state of the score numbers, driven by 'hideScores' checkbox
+	var scoresHidden = false; //flag for current shown/hidden state of the score numbers, driven by 'hideScores' Hide/Show toggle
 	var cBust = 0; //variable to hold cache busting value
 	var game; //variable to hold game value from streamcontrol dropdown
 	var p1Wrap = $('#p1Wrapper'); //variables to shortcut copypasting text resize functions
@@ -112,10 +112,11 @@ function init(){
 		var teamColor = scObj['teamColor'];
 		var toggleLogo = scObj['toggleLogo'];
 		var hideScores = scObj['hideScores'];
+		var hideBackground = scObj['hideBackground'];
 
-		// Fade the score numbers out/in based on the 'Hide Scores' checkbox so only names show.
+		// Fade the score numbers out/in based on the 'Hide Score #s' Hide/Show toggle so only names show.
 		// Only animate when the desired state actually changes to avoid restarting the tween each poll.
-		var shouldHide = (hideScores === '1' || hideScores === 'true');
+		var shouldHide = (hideScores === 'Hide');
 		if (shouldHide !== scoresHidden) {
 			scoresHidden = shouldHide;
 			TweenMax.to('.scores',.3,{css:{opacity: shouldHide ? 0 : 1},ease:Quad.easeOut});
@@ -138,6 +139,29 @@ function init(){
 		} else if (toggleLogo === 'Hide') {
 			$('#logoWrapper').hide();
 		}
+
+		// Hide/show the visual elements behind the scoreboard text so the text can be
+		// composited over a custom image overlay instead of the built-in background.
+		if (hideBackground === 'Hide') {
+			$('#scoreboardBG').hide();
+		} else if (hideBackground === 'Show') {
+			$('#scoreboardBG').show();
+		}
+
+		// Push names/scores further from center to align with custom overlays.
+		// Driven by the 'Push Names Out' / 'Push Scores Out' dropdowns (0-10); each step = offsetStep px.
+		// P1 sits left of center (shift left to push out), P2 sits right of center (shift right).
+		var isGBVSR = (scObj['game'] === 'GBVSR');
+		var namePx = (parseInt(scObj['nameOffset'], 10) || 0) * offsetStep;
+		var scorePx = (parseInt(scObj['scoreOffset'], 10) || 0) * offsetStep;
+		var baseP1Wrapper = parseFloat(isGBVSR ? gbvsrP1WrapperLeft : standardP1WrapperLeft);
+		var baseP2Wrapper = parseFloat(isGBVSR ? gbvsrP2WrapperLeft : standardP2WrapperLeft);
+		var baseP1Score = parseFloat(isGBVSR ? gbvsrP1ScoreLeft : standardP1ScoreLeft);
+		var baseP2Score = parseFloat(isGBVSR ? gbvsrP2ScoreLeft : standardP2ScoreLeft);
+		TweenMax.set('#p1Wrapper', {css:{left: (baseP1Wrapper - namePx) + 'px'}});
+		TweenMax.set('#p2Wrapper', {css:{left: (baseP2Wrapper + namePx) + 'px'}});
+		TweenMax.set('#p1Score', {css:{left: (baseP1Score - scorePx) + 'px'}});
+		TweenMax.set('#p2Score', {css:{left: (baseP2Score + scorePx) + 'px'}});
 	}
 
 	function getData(){
@@ -188,7 +212,7 @@ function init(){
 			TweenMax.to('#p1Wrapper',nameTime,{css:{x: '+0px', opacity: 1},ease:Quad.easeOut,delay:nameDelay}); //animates wrappers traveling back to default css positions while
 			TweenMax.to('#p2Wrapper',nameTime,{css:{x: '+0px', opacity: 1},ease:Quad.easeOut,delay:nameDelay}); //fading them in, timing/delay based on variables set in scoreboard.html
 			TweenMax.to('#round',rdTime,{css:{y: '+0px', opacity: 1},ease:Quad.easeOut,delay:rdDelay});
-			scoresHidden = (scObj['hideScores'] === '1' || scObj['hideScores'] === 'true'); //respect hidden state on first load so applyCustomizations doesn't re-animate
+			scoresHidden = (scObj['hideScores'] === 'Hide'); //respect hidden state on first load so applyCustomizations doesn't re-animate
 			TweenMax.to('.scores',scTime,{css:{opacity: scoresHidden ? 0 : 1},ease:Quad.easeOut,delay:scDelay});
 		}
 		else{

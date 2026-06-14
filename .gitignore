@@ -1,0 +1,9 @@
+# Ignore additional images
+*/imgs/*
+
+# Ignore additional fonts
+_overlays/fonts/*
+!_overlays/fonts/ValorantFont.ttf
+
+# Local, private style overrides (e.g. personal-use fonts) — keep the .example tracked
+_overlays/css/style.local.css

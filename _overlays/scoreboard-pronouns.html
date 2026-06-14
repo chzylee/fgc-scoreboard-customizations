@@ -1,0 +1,24 @@
+<!--
+	Standalone PLAYER PRONOUNS overlay (driven by StreamControl, same data as the full board).
+
+	OBS Browser Source size: Width 1920, Height 1080.
+	This page draws onto a transparent 1920x1080 canvas, so the source MUST be 1920x1080
+	for the pronouns to land in the right place. After adding it, move/scale the whole source
+	in OBS to sit over your overlay image, and use the "Push Pronouns Out" dropdown (0-10) in
+	StreamControl for fine, symmetric left/right nudges.
+-->
+<html>
+	<head>
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/style.local.css"> <!-- optional, gitignored: your own font/overrides; safe to be absent -->
+		<script src="js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/greensock-js/src/minified/TweenMax.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">window.scComponents = ['pronouns'];</script>
+		<script src="js/scoreboard-fragment.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<!-- Standalone player pronouns. Add as its own OBS browser source and position over your overlay. -->
+		<span id="p1Pronouns" class="pronouns"></span>
+		<span id="p2Pronouns" class="pronouns"></span>
+	</body>
+</html>

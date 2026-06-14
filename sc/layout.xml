@@ -57,14 +57,65 @@
   <label x="10" y="14" width="95" height="13">Main Color</label>
   <label x="10" y="44" width="95" height="13">Team Text Color</label>
   <label x="10" y="74" width="95" height="13">Toggle Logo</label>
-  <label x="10" y="104" width="95" height="13">Hide Scores</label>
+  <label x="10" y="104" width="95" height="13">Hide Score #s</label>
+  <label x="10" y="134" width="95" height="13">Hide Background</label>
+  <label x="10" y="164" width="95" height="13">Push Names Out</label>
+  <label x="10" y="194" width="95" height="13">Push Scores Out</label>
+  <label x="10" y="224" width="95" height="13">Push Pronouns Out</label>
   <lineEdit id="mainColor" x="110" y="10" width="100" height="20" />
   <lineEdit id="teamColor" x="110" y="40" width="100" height="20" />
   <comboBox id="toggleLogo" x="110" y="70" width="80" height="20">
    <comboItem>Hide</comboItem>
    <comboItem>Show</comboItem>
   </comboBox>
-  <checkBox id="hideScores" x="110" y="101" width="20" height="20"></checkBox>
-  <label x="10" y="136" width="380" height="13">Colors: hex e.g. #3f6cbd — leave blank to use stylesheet default</label>
+  <comboBox id="hideScores" x="110" y="100" width="80" height="20">
+   <comboItem>Hide</comboItem>
+   <comboItem>Show</comboItem>
+  </comboBox>
+  <comboBox id="hideBackground" x="110" y="130" width="80" height="20">
+   <comboItem>Hide</comboItem>
+   <comboItem>Show</comboItem>
+  </comboBox>
+  <comboBox id="nameOffset" x="110" y="160" width="80" height="20">
+   <comboItem>0</comboItem>
+   <comboItem>1</comboItem>
+   <comboItem>2</comboItem>
+   <comboItem>3</comboItem>
+   <comboItem>4</comboItem>
+   <comboItem>5</comboItem>
+   <comboItem>6</comboItem>
+   <comboItem>7</comboItem>
+   <comboItem>8</comboItem>
+   <comboItem>9</comboItem>
+   <comboItem>10</comboItem>
+  </comboBox>
+  <comboBox id="scoreOffset" x="110" y="190" width="80" height="20">
+   <comboItem>0</comboItem>
+   <comboItem>1</comboItem>
+   <comboItem>2</comboItem>
+   <comboItem>3</comboItem>
+   <comboItem>4</comboItem>
+   <comboItem>5</comboItem>
+   <comboItem>6</comboItem>
+   <comboItem>7</comboItem>
+   <comboItem>8</comboItem>
+   <comboItem>9</comboItem>
+   <comboItem>10</comboItem>
+  </comboBox>
+  <comboBox id="pronounOffset" x="110" y="220" width="80" height="20">
+   <comboItem>0</comboItem>
+   <comboItem>1</comboItem>
+   <comboItem>2</comboItem>
+   <comboItem>3</comboItem>
+   <comboItem>4</comboItem>
+   <comboItem>5</comboItem>
+   <comboItem>6</comboItem>
+   <comboItem>7</comboItem>
+   <comboItem>8</comboItem>
+   <comboItem>9</comboItem>
+   <comboItem>10</comboItem>
+  </comboBox>
+  <label x="10" y="256" width="380" height="13">Colors: hex e.g. #3f6cbd — leave blank to use stylesheet default</label>
+  <label x="10" y="274" width="500" height="13">Push ... Out: 0 = default, higher nudges that element toward the edges (used by the standalone overlay pages)</label>
  </tab>
 </layout>

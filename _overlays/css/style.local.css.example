@@ -1,0 +1,21 @@
+/*
+ * Template for a LOCAL, PRIVATE override file.
+ *
+ * To use a custom font without committing it:
+ *   1. Drop your font file in _overlays/fonts/  (that folder is gitignored).
+ *   2. Copy this file to "style.local.css" in the same folder.
+ *   3. Edit the @font-face src + font-family below to match your font.
+ *
+ * style.local.css is gitignored and is loaded after style.css by every overlay
+ * page, so the --scoreboard-font override here wins. If the file is absent the
+ * pages just fall back to the default Valorant font — no error that matters.
+ */
+
+@font-face {
+  src: url("../fonts/YOUR-FONT-FILE.otf");
+  font-family: "YourFontName";
+}
+
+:root {
+  --scoreboard-font: "YourFontName";
+}
