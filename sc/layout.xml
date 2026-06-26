@@ -65,16 +65,16 @@
   <lineEdit id="mainColor" x="110" y="10" width="100" height="20" />
   <lineEdit id="teamColor" x="110" y="40" width="100" height="20" />
   <comboBox id="toggleLogo" x="110" y="70" width="80" height="20">
-   <comboItem>Hide</comboItem>
    <comboItem>Show</comboItem>
+   <comboItem>Hide</comboItem>
   </comboBox>
   <comboBox id="hideScores" x="110" y="100" width="80" height="20">
-   <comboItem>Hide</comboItem>
    <comboItem>Show</comboItem>
+   <comboItem>Hide</comboItem>
   </comboBox>
   <comboBox id="hideBackground" x="110" y="130" width="80" height="20">
-   <comboItem>Hide</comboItem>
    <comboItem>Show</comboItem>
+   <comboItem>Hide</comboItem>
   </comboBox>
   <comboBox id="nameOffset" x="110" y="160" width="80" height="20">
    <comboItem>0</comboItem>
